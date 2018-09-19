@@ -17,10 +17,8 @@ import { NjBuscadorComponent } from 'app/nj-buscador/nj-buscador.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    NjBuscadorComponent,
-    EstadosService
   ],
-  exports: [EstadosService],
+  exports: [],
   providers: [EstadosService],
 
   bootstrap: [AppComponent]

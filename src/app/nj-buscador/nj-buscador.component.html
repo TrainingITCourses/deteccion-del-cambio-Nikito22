@@ -1,7 +1,9 @@
-<select (change)="onChangeTipoCriterio($event)">
+<select [(ngModel)]="tipoCriterio" (change)="onChangeTipoCriterio($event)">
   <option *ngFor="let criterio of criterios" [value]="criterio">{{criterio.viewValue}}</option>
 </select>
+<p>Seleccione {{tipoCriterioTexto}}</p>
+<p>{{valorCriterios}}</p>
 <ol>
-  <li *ngFor="let valorCriterio of valoresCriterios"> {{valorCriterio.viewValue}}
-  </li>
+    <li *ngFor="let valorCriterio of valoresCriterios"> {{valorCriterio.viewValue}}
+    </li>
 </ol>
