@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { DeteccionDelCambioNikito22Page } from './app.po';
 
-describe('deteccion-del-cambio-nikito22 App', () => {
-  let page: AppPage;
+describe('deteccion-del-cambio-nikito22 App', function() {
+  let page: DeteccionDelCambioNikito22Page;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new DeteccionDelCambioNikito22Page();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });

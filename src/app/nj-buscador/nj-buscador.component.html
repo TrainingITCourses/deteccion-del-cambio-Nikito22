@@ -1,7 +1,19 @@
+<<<<<<< HEAD
 <select (change)="changeTipoCriterio($event)">
   <option *ngFor="let criterio of criterios" [value]="criterio.value">{{criterio.viewValue}}</option>
+=======
+<select [(ngModel)]="tipoCriterio" (change)="onChangeTipoCriterio($event)">
+  <option *ngFor="let criterio of criterios" [value]="criterio">{{criterio.viewValue}}</option>
+>>>>>>> f71904de5b173d12ac63f238978c8f37e5577dfc
 </select>
+<p>Seleccione {{tipoCriterioTexto}}</p>
+<p>{{valorCriterios}}</p>
 <ol>
+<<<<<<< HEAD
   <li *ngFor="let valorCriterio of valoresCriterios" [value]="valorCriterio.value"> {{valorCriterio.viewValue}}
   </li>
+=======
+    <li *ngFor="let valorCriterio of valoresCriterios"> {{valorCriterio.viewValue}}
+    </li>
+>>>>>>> f71904de5b173d12ac63f238978c8f37e5577dfc
 </ol>
