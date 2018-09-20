@@ -14,6 +14,8 @@ export class APIService {
     public agencias;
     public tiposMisiones;
 
+    public cargado = false;
+
     constructor(private http: HttpClient) {
         forkJoin(
             this.getJSON('/assets/launchstatus.json'),
@@ -21,8 +23,11 @@ export class APIService {
             this.getJSON('/assets/launchmissions.json')
         ).pipe(
             map(([estados, agencias, tiposMisiones]) => {
-                let [this.estados, this.agencias, this.tiposMisiones] =[estados, agencias, tiposMisiones];
-                console.log(this.estados, this.agencias, this.tiposMisiones);
+                this.estados = estados;
+                this.agencias = agencias;
+                this.tiposMisiones = tiposMisiones;
+                this.cargado = true;
+                console.log('Servicio json cargados', this.estados, this.agencias, this.tiposMisiones);
             })
         );
     }
