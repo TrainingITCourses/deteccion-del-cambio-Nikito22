@@ -1,7 +1,7 @@
-<select (change)="onChangeTipoCriterio($event)">
-  <option *ngFor="let criterio of criterios" [value]="criterio">{{criterio.viewValue}}</option>
+<select (change)="changeTipoCriterio($event)">
+  <option *ngFor="let criterio of criterios" [value]="criterio.value">{{criterio.viewValue}}</option>
 </select>
 <ol>
-  <li *ngFor="let valorCriterio of valoresCriterios"> {{valorCriterio.viewValue}}
+  <li *ngFor="let valorCriterio of valoresCriterios" [value]="valorCriterio.value"> {{valorCriterio.viewValue}}
   </li>
 </ol>

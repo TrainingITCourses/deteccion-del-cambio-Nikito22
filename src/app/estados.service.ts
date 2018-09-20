@@ -1,20 +1,34 @@
+import { AppComponent } from './app.component';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/observable';
+import { forkJoin } from 'rxjs/observable/forkJoin';
+import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class EstadosService {
+export class APIService {
+    public selOpt = { value: '', viewValue: '' };
 
-    constructor(private http: Http) {
-        var obj;
-        this.getJSON().subscribe(data => obj = data, error => console.log(error));
-   }
+    public estados;
+    public agencias;
+    public tiposMisiones;
 
-   public getJSON(): Observable<any> {
-        return this.http.get('/assets/launchstatus.json')
-                        .map((res: any) => res.json());
+    constructor(private http: HttpClient) {
+        forkJoin(
+            this.getJSON('/assets/launchstatus.json'),
+            this.getJSON('/assets/launchagencies.json'),
+            this.getJSON('/assets/launchmissions.json')
+        ).pipe(
+            map(([estados, agencias, tiposMisiones]) => {
+            let [this.estados, this.agencias, this.tiposMisiones] =[estados, agencias, tiposMisiones];
+            console.log(this.estados, this.agencias, this.tiposMisiones);
+            })
+        );
+    }
 
+    private getJSON(jsonFile): Observable<any> {
+        return this.http.get(jsonFile)
+            .map((res: any) => res.types);
     }
 }

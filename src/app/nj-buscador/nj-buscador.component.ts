@@ -1,4 +1,4 @@
-import { EstadosService } from './../estados.service';
+import { APIService } from './../estados.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
@@ -20,18 +20,27 @@ export class NjBuscadorComponent implements OnInit {
 
   public valorCriterios: any;
 
-  constructor(private estados: EstadosService) {  }
+  constructor(private estados: APIService) { }
 
   ngOnInit() {
   }
 
   changeTipoCriterio(event) {
-    this.tipoCriterio = event.value;
+    this.tipoCriterio = this.criterios[event.srcElement.selectedIndex].value;
+    this.leerValoresCriterio(this.tipoCriterio);
   }
 
   leerValoresCriterio(criterio: string) {
-    if (criterio === 'E') {
-      this.valorCriterios = this.estados.getJSON();
+    switch (criterio) {
+      case 'E':
+        this.valorCriterios = this.estados.estados();
+        break;
+      case 'A':
+        this.valorCriterios = this.estados.agencias();
+        break;
+      case 'M':
+        this.valorCriterios = this.estados.tiposMisiones();
+        break;
     }
   }
 

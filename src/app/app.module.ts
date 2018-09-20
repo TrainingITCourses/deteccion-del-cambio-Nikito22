@@ -1,10 +1,10 @@
-import { EstadosService } from './estados.service';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
-import { AppComponent } from './app.component';
 import { NjBuscadorComponent } from './nj-buscador/nj-buscador.component';
+import { APIService } from './estados.service';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +13,10 @@ import { NjBuscadorComponent } from './nj-buscador/nj-buscador.component';
   ],
   imports: [
     BrowserModule,
-    EstadosService
+    HttpClientModule
   ],
-  exports: [EstadosService],
-  providers: [EstadosService],
+  exports: [],
+  providers: [APIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
