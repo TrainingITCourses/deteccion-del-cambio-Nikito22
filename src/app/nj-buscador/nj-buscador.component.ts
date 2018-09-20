@@ -1,6 +1,5 @@
-import { APIService } from './../estados.service';
+import { APIService } from './../api.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
 
 @Component({
   selector: 'nj-buscador',
@@ -22,49 +21,37 @@ export class NjBuscadorComponent implements OnInit {
 
   public valorCriterios: any;
 
-<<<<<<< HEAD
-  constructor(private estados: APIService) { }
-=======
-  constructor(private estados: EstadosService) {
+  constructor(private Api: APIService) {
   }
->>>>>>> f71904de5b173d12ac63f238978c8f37e5577dfc
 
   ngOnInit() {
-    this.tipoCriterio = 1;
+    this.tipoCriterio = 0;
     this.tipoCriterioTexto = this.criterios[this.tipoCriterio].viewValue;
   }
 
-<<<<<<< HEAD
   changeTipoCriterio(event) {
-    this.tipoCriterio = this.criterios[event.srcElement.selectedIndex].value;
-    this.leerValoresCriterio(this.tipoCriterio);
+    this.tipoCriterio = event.target.selectedIndex;
+    this.tipoCriterioTexto = this.criterios[this.tipoCriterio].viewValue;
+    this.leerValoresCriterio(event.target.selectedIndex);
   }
 
-  leerValoresCriterio(criterio: string) {
+  leerValoresCriterio(criterio: number) {
     switch (criterio) {
-      case 'E':
-        this.valorCriterios = this.estados.estados();
+      case 0:
+        this.valorCriterios = this.Api.estados.map(d => ({
+          value: d.id, viewValue: d.description + ' (' + d.name + ')'
+        }));
         break;
-      case 'A':
-        this.valorCriterios = this.estados.agencias();
+      case 1:
+        this.valorCriterios = this.Api.agencias.map(d => ({
+          value: d.id, viewValue: d.name
+        }));
         break;
-      case 'M':
-        this.valorCriterios = this.estados.tiposMisiones();
+      case 2:
+        this.valorCriterios = this.Api.tiposMisiones.map(d => ({
+          value: d.id, viewValue: d.name
+        }));
         break;
-=======
-  onChangeTipoCriterio(event) {
-    const e = event.srcElement;
-    this.tipoCriterio = e.selectedIndex;
-    var o = this.criterios[this.tipoCriterio];
-    this.tipoCriterioTexto = o.viewValue;
-    this.leerValoresCriterio(o.value);
-  }
-
-  leerValoresCriterio(criterio: string) {
-    if (criterio === 'E') {
-      const estados = this.estados.estados;
-      this.valorCriterios = estados;
->>>>>>> f71904de5b173d12ac63f238978c8f37e5577dfc
     }
   }
 
