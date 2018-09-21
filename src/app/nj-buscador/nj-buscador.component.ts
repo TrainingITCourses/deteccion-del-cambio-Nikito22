@@ -37,16 +37,18 @@ export class NjBuscadorComponent implements OnInit {
     this.tipoCriterioTexto = this.criterios[this.tipoCriterio].viewValue;
     this.leerValoresCriterio(event.target.selectedIndex);
   }
-  changeCriterio() {
+  changeCriterio(event) {
+    const v = event.target.value;
+    this.valorCriterio = event.target.value;
     switch (this.tipoCriterio) {
       case 0:
-        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.status = this.valorCriterio);
+        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.status == v);
         break;
       case 1:
-        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.lsp = this.valorCriterio);
+        this.lanzamientosFiltrados = this.Api.lanzamientos.filter((x) => x.lsp == v);
         break;
       case 2:
-        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.state = this.valorCriterio);
+        this.lanzamientosFiltrados = this.Api.lanzamientos.filter((x) => x.state == v);
         break;
     }
   }

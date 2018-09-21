@@ -22,15 +22,15 @@ export class APIService {
             this.http.get('/assets/launchagencies.json'),
             this.http.get('/assets/launchmissions.json'),
             this.http.get('/assets/launchlibrary.json')
-        ]).pipe(delay(1000)).subscribe(results => {
+        ]).pipe(delay(200)).subscribe(results => {
             this.estados = results[0].types.map(d => ({
-                value: d.id, viewValue: d.id + ' - ' + d.description + ' (' + d.name + ')'
+                id: d.id, viewValue: d.id + ' - ' + d.description + ' (' + d.name + ')'
             }));
             this.agencias = results[1].agencies.map(d => ({
-                value: d.id, viewValue: d.id + ' - ' + d.name
+                id: d.id, viewValue: d.id + ' - ' + d.name
             }));
             this.tiposMisiones = results[2].types.map(d => ({
-                value: d.id, viewValue: d.id + ' - ' + d.name
+                id: d.id, viewValue: d.id + ' - ' + d.name
             }));
             this.lanzamientos = results[3].launches;
             this.cargado = true;
