@@ -7,7 +7,7 @@
     <select *ngIf="valoresCriterios" (change)="changeCriterio($event)">
     <option [value]='o.id' *ngFor="let o of valoresCriterios"> {{o.viewValue}} </option>
   </select>
-    <div *ngIf="lanzamientosFiltrados; else nolanzamientos">{{lanzamientosFiltrados.length}} lanzamientos encontrados</div>
+    <div *ngIf="lanzamientosFiltrados; else nolanzamientos">{{cuentaLanzamientos()}} lanzamientos encontrados</div>
     <ol>
         <li *ngFor="let l of lanzamientosFiltrados">{{l.name}}</li>
     </ol>

@@ -37,6 +37,7 @@ export class NjBuscadorComponent implements OnInit {
     this.tipoCriterioTexto = this.criterios[this.tipoCriterio].viewValue;
     this.leerValoresCriterio(event.target.selectedIndex);
   }
+
   changeCriterio(event) {
     const v = event.target.value;
     this.valorCriterio = event.target.value;
@@ -52,6 +53,7 @@ export class NjBuscadorComponent implements OnInit {
         break;
     }
   }
+
   leerValoresCriterio(criterio: number) {
     switch (criterio) {
       case 0:
@@ -66,4 +68,8 @@ export class NjBuscadorComponent implements OnInit {
     }
   }
 
+  cuentaLanzamientos() {
+    console.log('Cuenta de lanzamientos');
+    return this.lanzamientosFiltrados.length;
+  }
 }
