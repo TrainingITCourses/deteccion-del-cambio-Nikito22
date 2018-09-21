@@ -2,6 +2,7 @@ import { APIService } from './../api.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'nj-buscador',
   templateUrl: './nj-buscador.component.html',
   styleUrls: ['./nj-buscador.component.css']
@@ -19,9 +20,11 @@ export class NjBuscadorComponent implements OnInit {
     { value: 'T', viewValue: 'Tipo' }
   ];
 
-  public valorCriterios: any;
+  public valoresCriterios: any[];
+  public valorCriterio: string;
+  public lanzamientosFiltrados: any[];
 
-  constructor(private Api: APIService) {
+  constructor(public Api: APIService) {
   }
 
   ngOnInit() {
@@ -34,23 +37,29 @@ export class NjBuscadorComponent implements OnInit {
     this.tipoCriterioTexto = this.criterios[this.tipoCriterio].viewValue;
     this.leerValoresCriterio(event.target.selectedIndex);
   }
-
+  changeCriterio() {
+    switch (this.tipoCriterio) {
+      case 0:
+        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.status = this.valorCriterio);
+        break;
+      case 1:
+        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.lsp = this.valorCriterio);
+        break;
+      case 2:
+        this.lanzamientosFiltrados = this.Api.lanzamientos.filter(x => x.state = this.valorCriterio);
+        break;
+    }
+  }
   leerValoresCriterio(criterio: number) {
     switch (criterio) {
       case 0:
-        this.valorCriterios = this.Api.estados.map(d => ({
-          value: d.id, viewValue: d.description + ' (' + d.name + ')'
-        }));
+        this.valoresCriterios = this.Api.estados;
         break;
       case 1:
-        this.valorCriterios = this.Api.agencias.map(d => ({
-          value: d.id, viewValue: d.name
-        }));
+        this.valoresCriterios = this.Api.agencias;
         break;
       case 2:
-        this.valorCriterios = this.Api.tiposMisiones.map(d => ({
-          value: d.id, viewValue: d.name
-        }));
+        this.valoresCriterios = this.Api.tiposMisiones;
         break;
     }
   }

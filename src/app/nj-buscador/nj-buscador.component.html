@@ -1,9 +1,14 @@
-<select [value]='tipoCriterio' (change)="changeTipoCriterio($event)">
-  <option *ngFor="let criterio of criterios" [value]="criterio.value">{{criterio.viewValue}}</option>
-</select>
-<p>Seleccione {{tipoCriterioTexto}}</p>
-<p>Opciones: {{valorCriterios}}</p>
-<ol>
-    <li *ngFor="let valorCriterio of valoresCriterios"> {{valorCriterio.viewValue}}
-    </li>
-</ol>
+<div *ngIf="Api.cargado; else cargando">
+    <label>Buscar por: </label>
+    <select [value]='tipoCriterio' (change)="changeTipoCriterio($event)">
+    <option *ngFor="let o of criterios" [value]="o.value">{{o.viewValue}}</option>
+  </select (change)="changeCriterio($event)">
+  <label>{{tipoCriterioTexto}}</label>
+  <select *ngIf="valoresCriterios">
+    <option [value]='o.id' *ngFor="let o of valoresCriterios"> {{o.viewValue}} </option>
+  </select>
+    <ol>
+        <li *ngFor="let l of lanzamientosFiltrados">{{l.name}}</li>
+    </ol>
+</div>
+<ng-template #cargando>Cargando estados, agencias y tipos de misión ...</ng-template>
