@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { BuscadorLanzamientosComponent } from './buscadorLanzamientos.component';
+import { LsBuscadorLanzamientosComponent } from './buscadorLanzamientos.component';
 
 describe('BuscadorLanzamientosComponent', () => {
-  let component: BuscadorLanzamientosComponent;
-  let fixture: ComponentFixture<BuscadorLanzamientosComponent>;
+  let component: LsBuscadorLanzamientosComponent;
+  let fixture: ComponentFixture<LsBuscadorLanzamientosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuscadorLanzamientosComponent ]
+      declarations: [LsBuscadorLanzamientosComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuscadorLanzamientosComponent);
+    fixture = TestBed.createComponent(LsBuscadorLanzamientosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

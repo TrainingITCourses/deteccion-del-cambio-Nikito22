@@ -17,7 +17,7 @@ import { LsBuscadorLanzamientosComponent } from './ls-buscador/buscadorLanzamien
         AppComponent,
         LsBuscadorComponent,
         LsBuscadorCriteriosComponent,
-        LsBuscadorComponent
+        LsBuscadorLanzamientosComponent
     ],
     imports: [
         BrowserModule,

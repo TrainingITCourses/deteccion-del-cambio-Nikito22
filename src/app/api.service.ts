@@ -1,7 +1,6 @@
-import { AppComponent } from './app.component';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, Observable, of, throwError } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 
@@ -22,12 +21,11 @@ export class APIService implements OnInit {
     public agencias: Array<Iselopt>;
     public tiposMision: Array<Iselopt>;
     public lanzamientos: Array<Ilanzamiento>;
-    public cargado: boolean;
-
+    @Output() cargado: EventEmitter<any> = new EventEmitter();
 
     constructor(private http: HttpClient) {
 
-        // Esta modo no activa el interface al usuario hasta tener cargados todos los json, 
+        // Esta modo no activa el interface al usuario hasta tener cargados todos los json,
         // Las lecturas de los json ya dejan un array de value y viewValue para pasar directo al select
         // me parece muy exagerado como metodo para  llamadas API más lentas que este sencillo json local.
         forkJoin([
@@ -46,9 +44,9 @@ export class APIService implements OnInit {
                 value: d.id, viewValue: d.id + ' - ' + d.name
             }));
             this.lanzamientos = results[3].launches;
-            this.cargado = true;
             // Imitamos una cierta demora con delay(xxx)
             console.log('Servicio inicializado (json listos para su consumo)');
+            this.cargado.emit(true);
         });
     }
     ngOnInit() {
