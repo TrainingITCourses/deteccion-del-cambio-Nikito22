@@ -7,7 +7,6 @@ export enum enTipoCriterio {
     TipoMision
 }
 
-
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ls-buscador',

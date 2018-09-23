@@ -14,6 +14,7 @@ export interface Ilanzamiento {
     status: number;
     lsp: string;
     missionId: string; // Lost in launchlibrary json simplification
+    net: string;
 }
 @Injectable()
 export class APIService implements OnInit {
@@ -29,11 +30,11 @@ export class APIService implements OnInit {
         // Las lecturas de los json ya dejan un array de value y viewValue para pasar directo al select
         // me parece muy exagerado como metodo para  llamadas API más lentas que este sencillo json local.
         forkJoin([
-            this.http.get('/assets/launchstatus.json'),
+            this.http.get<any>('/assets/launchstatus.json'),
             this.http.get('/assets/launchagencies.json'),
             this.http.get('/assets/launchmissions.json'),
             this.http.get('/assets/launchlibrary.json')
-        ]).pipe(delay(200)).subscribe(results => {
+        ]).pipe(delay(200)).subscribe((results: any[]) => {
             this.estados = results[0].types.map(d => ({
                 value: d.id, viewValue: d.id + ' - ' + d.description + ' (' + d.name + ')'
             }));
