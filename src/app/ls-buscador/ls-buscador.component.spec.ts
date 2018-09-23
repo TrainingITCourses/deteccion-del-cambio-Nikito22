@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NjBuscadorComponent } from './nj-buscador.component';
+import { LsBuscadorComponent } from './ls-buscador.component';
 
 describe('NjBuscadorComponent', () => {
-  let component: NjBuscadorComponent;
-  let fixture: ComponentFixture<NjBuscadorComponent>;
+  let component: LsBuscadorComponent;
+  let fixture: ComponentFixture<LsBuscadorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NjBuscadorComponent ]
+      declarations: [LsBuscadorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NjBuscadorComponent);
+    fixture = TestBed.createComponent(LsBuscadorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

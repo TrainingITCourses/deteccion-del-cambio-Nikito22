@@ -1,0 +1,6 @@
+<div *ngIf="lanzamientosFiltrados; else nolanzamientos">{{cuentaLanzamientos()}} lanzamientos encontrados</div>
+<ol>
+    <li *ngFor="let l of lanzamientosFiltrados">{{l.name}}</li>
+</ol>
+</div>
+<ng-template #nolanzamientos>No se encontraron lanzamientos</ng-template>

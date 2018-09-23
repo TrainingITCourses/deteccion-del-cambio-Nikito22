@@ -1,0 +1,4 @@
+<label>{{enTipoCriterio[tipoCriterio]}}</label>
+<select *ngIf="valoresCriterios" (change)="changeCriterio($event)">
+  <option [value]='o.id' *ngFor="let o of valoresCriterios"> {{o.viewValue}} </option>
+</select>
